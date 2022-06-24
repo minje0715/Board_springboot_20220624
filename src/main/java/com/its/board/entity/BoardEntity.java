@@ -1,5 +1,6 @@
 package com.its.board.entity;
 
+import com.its.board.dto.BoardDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,14 @@ public class BoardEntity {
 
     @Column (name = "boardHits")
     private int boardHits;
+
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPassword(boardDTO.getBoardPassword());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(boardDTO.getBoardHits());
+        return boardEntity;
+    }
 }
