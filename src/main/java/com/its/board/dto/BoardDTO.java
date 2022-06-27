@@ -4,6 +4,7 @@ import com.its.board.entity.BoardEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +20,9 @@ public class BoardDTO {
     private int boardHits;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
+
+    private MultipartFile boardFile; // 실제 파일
+    private String boardFileName; // 파일 이름
 
     public BoardDTO(Long id, String boardTitle, String boardWriter, int boardHits, LocalDateTime createdTime) {
         this.id = id;

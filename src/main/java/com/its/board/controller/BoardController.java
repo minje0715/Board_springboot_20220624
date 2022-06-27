@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -25,7 +26,7 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute BoardDTO boardDTO) {
+    public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
         Long id = boardService.save(boardDTO);
         return "redirect:/board/" + id;
     }
@@ -62,6 +63,11 @@ public class BoardController {
         boardService.delete(id);
         return "redirect:/board/";
     }
+
+    // /board?page=1
+    // /board/3/1
+    // rest api: 주소값만으로 자원을 식별 /board/10
+
     @GetMapping
     public String paging(@PageableDefault(page = 1) Pageable pageable, Model model) {
         Page<BoardDTO> boardList = boardService.paging(pageable);
