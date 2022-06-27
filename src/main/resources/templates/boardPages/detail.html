@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>글 번호</th>
+        <th>글 제목</th>
+        <th>글 작성자</th>
+        <th>글 비밀번호</th>
+        <th>글 내용</th>
+        <th>조회수</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    <tr>
+        <td th:text="${board.id}"></td>
+        <td th:text="${board.boardTitle}"></td>
+        <td th:text="${board.boardWriter}"></td>
+        <td th:text="${board.boardPassword}"></td>
+        <td th:text="${board.boardContents}"></td>
+        <td th:text="${board.boardHits}"></td>
+        <td>
+            <button onclick="req(1)">수정</button>
+        </td>
+        <td>
+            <button onclick="req(2)">삭제</button>
+        </td>
+        <!--        <td>-->
+        <!--            <a th:href="@{|/member/deleteId/${board.id}|}">삭제</a>-->
+        <!--        </td>-->
+    </tr>
+</table>
+<div>
+    <p id="openInput"></p>
+</div>
+</body>
+<script th:inline="javascript">
+    const req = (num) => {
+
+    let inputTag = "<input type=\"text\" placeholder=\"password\" id=\"boardPassword\">\n" + "<button onclick=\"pwCheck("+num+")\">확인</button>"
+        document.getElementById("openInput").innerHTML = inputTag;
+
+    }
+    const pwCheck = (num) => {
+        console.log("pwCheck함수", num);
+        const pwConfirm = document.getElementById("boardPassword").value;
+        console.log(pwConfirm);
+        const pw = [[${board.boardPassword}]];
+        const id = [[${board.id}]];
+
+        if(pw == pwConfirm) {
+            if(num == 1) {
+            location.href = "/board/update-form/"+ id;
+            }else{
+                location.href = "/board/delete" + id;
+            }
+        }else {
+            alert("비밀번호가 일치하지 않습니다");
+        }
+    }
+
+    // const deleteId = () => {
+    //
+    //     let openInput = "<input type=\"text\" placeholder=\"boardPassword\" id=\"boardPassword\">\n" + "<button onclick=\"pwConfirm2()\">확인</button>"
+    //     document.getElementById("openInput").innerHTML = openInput;
+    //
+    // }
+    //
+    // const pwConfirm2 = () => {
+    //     const pw = document.getElementById("boardPassword").value;
+    //     const pwCheck = [[${board.boardPassword}]];
+    //     const id = [[${board.id}]];
+    //
+    //     if(pw == pwCheck) {
+    //         alert("비밀번호가 일치합니다");
+    //         location.href = "/board/delete/"+ id;
+    //     }else {
+    //         alert("비밀번호가 일치하지 않습니다");
+    //     }
+    // }
+
+
+</script>
+</html>
