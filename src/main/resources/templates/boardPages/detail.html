@@ -41,24 +41,23 @@
 <script th:inline="javascript">
     const req = (num) => {
 
-    let inputTag = "<input type=\"text\" placeholder=\"password\" id=\"boardPassword\">\n" + "<button onclick=\"pwCheck("+num+")\">확인</button>"
+        let inputTag = "<input type=\"text\" placeholder=\"password\" id=\"boardPassword\">\n" + "<button onclick=\"pwCheck(" + num + ")\">확인</button>"
         document.getElementById("openInput").innerHTML = inputTag;
 
     }
     const pwCheck = (num) => {
-        console.log("pwCheck함수", num);
         const pwConfirm = document.getElementById("boardPassword").value;
-        console.log(pwConfirm);
         const pw = [[${board.boardPassword}]];
         const id = [[${board.id}]];
 
-        if(pw == pwConfirm) {
-            if(num == 1) {
-            location.href = "/board/update-form/"+ id;
-            }else{
-                location.href = "/board/delete" + id;
+        if (pw == pwConfirm) {
+            if (num == 1) {
+                location.href = "/board/update-form/" + id;
+            } else {
+                console.log("삭제")
+                location.href = "/board/delete/" + id;
             }
-        }else {
+        } else {
             alert("비밀번호가 일치하지 않습니다");
         }
     }

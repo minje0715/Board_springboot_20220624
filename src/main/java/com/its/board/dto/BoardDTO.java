@@ -20,11 +20,25 @@ public class BoardDTO {
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
 
-    public static BoardDTO toboardDTO(BoardEntity boardEntity) {
+    public BoardDTO(Long id, String boardTitle, String boardWriter, int boardHits, LocalDateTime createdTime) {
+        this.id = id;
+        this.boardTitle = boardTitle;
+        this.boardWriter = boardWriter;
+        this.boardHits = boardHits;
+        this.createdTime = createdTime;
+    }
+
+    public BoardDTO(String boardTitle, String boardWriter, String boardPassword, String boardContents) {
+        this.boardTitle = boardTitle;
+        this.boardWriter = boardWriter;
+        this.boardPassword = boardPassword;
+        this.boardContents = boardContents;
+    }
+
+    public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(boardEntity.getId());
         boardDTO.setBoardTitle(boardEntity.getBoardTitle());
-        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
         boardDTO.setBoardPassword(boardEntity.getBoardPassword());
         boardDTO.setBoardContents(boardEntity.getBoardContents());
         boardDTO.setBoardHits(boardEntity.getBoardHits());
@@ -33,21 +47,4 @@ public class BoardDTO {
         return boardDTO;
     }
 
-    public BoardDTO(String boardTitle, String boardWriter, String boardPassword, String boardContents, int boardHits) {
-        this.boardTitle = boardTitle;
-        this.boardWriter = boardWriter;
-        this.boardPassword = boardPassword;
-        this.boardContents = boardContents;
-        this.boardHits = boardHits;
-    }
-    public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
-        BoardDTO boardDTO = new BoardDTO();
-        boardDTO.setId(boardEntity.getId());
-        boardDTO.setBoardTitle(boardEntity.getBoardTitle());
-        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
-        boardDTO.setBoardPassword(boardEntity.getBoardPassword());
-        boardDTO.setBoardContents(boardEntity.getBoardContents());
-        return boardDTO;
-    }
 }
-

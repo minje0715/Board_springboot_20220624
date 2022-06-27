@@ -7,7 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @Table(name = "board_table")
 public class BoardEntity extends BaseEntity {
     @Id
@@ -15,19 +16,19 @@ public class BoardEntity extends BaseEntity {
     @Column(name = "board_id")
     private Long id;
 
-    @Column (name = "boardTitle", length = 50, nullable = false)
+    @Column(name = "boardTitle", length = 50, nullable = false)
     private String boardTitle;
 
-    @Column (name = "boardWriter", length = 20)
+    @Column(name = "boardWriter", length = 20)
     private String boardWriter;
 
-    @Column (name = "boardPassword", length = 20)
+    @Column(name = "boardPassword", length = 20)
     private String boardPassword;
 
-    @Column (name = "boardContents", length = 500)
+    @Column(name = "boardContents", length = 500)
     private String boardContents;
 
-    @Column (name = "boardHits")
+    @Column(name = "boardHits")
     private int boardHits;
 
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
