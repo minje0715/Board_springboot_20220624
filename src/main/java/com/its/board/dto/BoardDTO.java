@@ -32,12 +32,9 @@ public class BoardDTO {
         this.createdTime = createdTime;
     }
 
-    public BoardDTO(String boardTitle, String boardWriter, String boardPassword, String boardContents) {
-        this.boardTitle = boardTitle;
-        this.boardWriter = boardWriter;
-        this.boardPassword = boardPassword;
-        this.boardContents = boardContents;
+    public BoardDTO(String s, String boardTitle, String boardWriter, String s1, int i) {
     }
+
 
     public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
@@ -48,6 +45,7 @@ public class BoardDTO {
         boardDTO.setBoardHits(boardEntity.getBoardHits());
         boardDTO.setCreatedTime(boardEntity.getCreatedTime());
         boardDTO.setUpdatedTime(boardEntity.getUpdatedTime());
+        boardDTO.setBoardFileName(boardEntity.getBoardFileName());
         return boardDTO;
     }
 

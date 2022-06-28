@@ -13,6 +13,7 @@
         <th>글 비밀번호</th>
         <th>글 내용</th>
         <th>조회수</th>
+        <th>사진</th>
         <th>수정</th>
         <th>삭제</th>
     </tr>
@@ -23,6 +24,7 @@
         <td th:text="${board.boardPassword}"></td>
         <td th:text="${board.boardContents}"></td>
         <td th:text="${board.boardHits}"></td>
+        <td><img th:src="@{|/upload/${board.boardFileName}|}" width="100" height="100" alt=""></td>
         <td>
             <button onclick="req(1)">수정</button>
         </td>
